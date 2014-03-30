@@ -1,10 +1,3 @@
-/*
- * TerminalIncolor.cpp
- *
- *  Created on: 29/03/2014
- *      Author: thiago
- */
-
 #include "TerminalIncolor.h"
 
 TerminalIncolor::TerminalIncolor() {

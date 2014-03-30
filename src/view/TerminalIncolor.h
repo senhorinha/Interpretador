@@ -1,14 +1,8 @@
-/*
- * TerminalIncolor.h
- *
- *  Created on: 29/03/2014
- *      Author: thiago
- */
-
 #include <iostream>
 using namespace std;
 
-class TerminalIncolor: Terminal {
+class TerminalIncolor: public Terminal {
+
 
 public:
 	TerminalIncolor();

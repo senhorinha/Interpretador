@@ -1,10 +1,3 @@
-/*
- * OperacoesAvancadaDeArquivos.cpp
- *
- *  Created on: 29/03/2014
- *      Author: thiago
- */
-
 #include "ChamadasDeArquivoEDiretorio.h"
 
 void ChamadasDeArquivoEDiretorio::access(const char *pathname, int mode) {

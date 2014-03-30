@@ -1,3 +1,5 @@
+#ifndef TERMINAL_H
+#define TERMINAL_H
 #include <iostream>
 
 using namespace std;
@@ -14,3 +16,5 @@ public:
 	virtual void mensagemDeErro(string msg) = 0;
 	virtual void limpar() = 0;
 };
+
+#endif TERMINAL_H

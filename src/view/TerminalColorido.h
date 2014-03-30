@@ -1,10 +1,3 @@
-/*
- * TerminalColorido.h
- *
- *  Created on: 29/03/2014
- *      Author: thiago
- */
-
 #ifndef TERMINALCOLORIDO_H_
 #define TERMINALCOLORIDO_H_
 
@@ -13,7 +6,7 @@
 
 using namespace std;
 
-class TerminalColorido: Terminal {
+class TerminalColorido: public Terminal {
 
 public:
 	const string COR_VERMELHA = "31";
@@ -23,7 +16,6 @@ public:
 	virtual void mensagemDeAlerta(string msg);
 	virtual bool mensagemDeConfirmacao(string msg);
 	virtual void mensagemDeSucesso(string msg);
-	virtual void mensagemDeAlerta(string msg);
 	virtual void mensagemDeErro(string msg);
 	virtual void limpar();
 	TerminalColorido();

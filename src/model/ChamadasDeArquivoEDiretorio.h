@@ -1,11 +1,4 @@
-/*
- * OperacoesAvancadaDeArquivos.h
- *
- *  Created on: 29/03/2014
- *      Author: thiago
- */
-
-#include "Terminal.h"
+#include "../view/Terminal.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/stat.h>
