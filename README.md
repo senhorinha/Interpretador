@@ -194,7 +194,11 @@ Atribuindo permissão de leitura e escrita para todos.
 	struct stat buffer;
 	chmod(caminho, S_IROTH | S_IWOTH);
 	status = stat(caminho, &buffer);
-	cout << status << endl;
+	if (status == 0) {
+		cout << "Permissão alterada com sucesso!" << endl;
+	} else {
+		cout << "Erro na atribuição da permissão!" << endl;
+	}
 ```
 
 **Resultado:**
