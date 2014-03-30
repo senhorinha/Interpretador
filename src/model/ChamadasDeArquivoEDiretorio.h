@@ -6,6 +6,7 @@
  */
 
 #include "Terminal.h"
+#include <stdio.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -19,6 +20,7 @@ public:
 	}
 	void access(const char *pathname, int mode);
 	void chmod(const char *path, mode_t mode);
+	void rename(const char *oldpath, const char *newpath);
 	virtual ~ChamadasDeArquivoEDiretorio();
 };
 

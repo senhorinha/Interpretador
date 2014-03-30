@@ -28,3 +28,15 @@ void ChamadasDeArquivoEDiretorio::chmod(const char *path, mode_t mode) {
 		terminal->mensagemDeErro("Erro! Permissão não alterada!");
 	}
 }
+
+void ChamadasDeArquivoEDiretorio::rename(const char *oldpath,
+		const char *newpath) {
+	int resultado;
+	resultado = rename(oldpath, newpath);
+	if (resultado == 0) {
+		terminal->mensagemDeSucesso("Sucesso! Arquivo renomeado!");
+	} else {
+		terminal->mensagemDeErro("Erro! Arquivo não renomeado!");
+	}
+
+}
