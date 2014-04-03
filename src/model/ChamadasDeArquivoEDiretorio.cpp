@@ -1,6 +1,6 @@
 #include "ChamadasDeArquivoEDiretorio.h"
 
-void ChamadasDeArquivoEDiretorio::access(const char *pathname, int mode) {
+void ChamadasDeArquivoEDiretorio::access_teste(const char *pathname, int mode) {
 	int resultado;
 	resultado = access(pathname, mode);
 	if (resultado == 0) {
@@ -22,7 +22,7 @@ void ChamadasDeArquivoEDiretorio::chmod(const char *path, mode_t mode) {
 	}
 }
 
-void ChamadasDeArquivoEDiretorio::rename(const char *oldpath,
+void ChamadasDeArquivoEDiretorio::rename_teste(const char *oldpath,
 		const char *newpath) {
 	int resultado;
 	resultado = rename(oldpath, newpath);
