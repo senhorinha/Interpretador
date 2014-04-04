@@ -2,6 +2,7 @@
 #include "Terminal.h"
 
 #include <iostream>
+#include <cstdlib>
 #include <unistd.h>
 #include <sys/utsname.h>
 
