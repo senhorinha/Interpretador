@@ -14,6 +14,7 @@ public:
 	const string COR_AZUL = "34";
 
 	virtual void parteInicialDoTerminal();
+	virtual void mensagemNormal(string msg);
 	virtual void mensagemDeAlerta(string msg);
 	virtual bool mensagemDeConfirmacao(string msg);
 	virtual void mensagemDeSucesso(string msg);

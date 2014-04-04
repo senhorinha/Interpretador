@@ -15,6 +15,7 @@ class TerminalIncolor: public Terminal {
 public:
 	TerminalIncolor();
 	virtual void parteInicialDoTerminal();
+	virtual void mensagemNormal(string msg);
 	virtual void mensagemDeAlerta(string msg);
 	virtual bool mensagemDeConfirmacao(string msg);
 	virtual void mensagemDeSucesso(string msg);

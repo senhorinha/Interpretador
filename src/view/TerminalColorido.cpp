@@ -22,6 +22,10 @@ void TerminalColorido::parteInicialDoTerminal() {
 			<< "\033[0m";
 }
 
+void TerminalColorido::mensagemNormal(string msg) {
+
+}
+
 // TODO: Tratar erros de digitação
 bool TerminalColorido::mensagemDeConfirmacao(string msg) {
 	cout << "\033[1;" << COR_AMARELA << "m" << msg << " (s ou n)." << "\033[0m"
