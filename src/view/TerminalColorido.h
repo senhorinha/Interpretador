@@ -1,6 +1,3 @@
-#ifndef TERMINALCOLORIDO_H_
-#define TERMINALCOLORIDO_H_
-
 #include "Terminal.h"
 #include <iostream>
 
@@ -23,7 +20,5 @@ public:
 	virtual void mensagemDeErro(string msg);
 	virtual void limpar();
 	TerminalColorido();
-	virtual ~TerminalColorido();
 };
 
-#endif /* TERMINALCOLORIDO_H_ */

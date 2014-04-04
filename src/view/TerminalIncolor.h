@@ -19,6 +19,5 @@ public:
 	virtual void mensagemDeSucesso(string msg);
 	virtual void mensagemDeErro(string msg);
 	virtual void limpar();
-	virtual ~TerminalIncolor();
 };
 

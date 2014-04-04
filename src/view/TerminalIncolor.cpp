@@ -39,5 +39,6 @@ void TerminalIncolor::mensagemDeSucesso(string msg) {
 	cout << msg << endl;
 }
 
-TerminalIncolor::~TerminalIncolor() {
+void TerminalIncolor::limpar() {
+	system("clear");
 }

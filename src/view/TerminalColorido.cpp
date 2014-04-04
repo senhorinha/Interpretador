@@ -1,8 +1,8 @@
-#include "Terminal.h"
 #include "TerminalColorido.h".
 
 #include <iostream>
 #include <unistd.h>
+#include <cstdlib>
 #include <sys/utsname.h>
 
 TerminalColorido::TerminalColorido() {
@@ -18,14 +18,14 @@ TerminalColorido::TerminalColorido() {
 }
 
 void TerminalColorido::parteInicialDoTerminal() {
-	cout << "\033[1;" << COR_AZUL << "m" << inicioDaMensagem << " $"
-			<< "\033[0m\n";
+	cout << "\033[1;" << COR_AZUL << "m" << inicioDaMensagem << " $ "
+			<< "\033[0m";
 }
 
 // TODO: Tratar erros de digitação
 bool TerminalColorido::mensagemDeConfirmacao(string msg) {
-	cout << "\033[1;" << COR_AMARELA << "m" << msg << " (s ou n)."
-			<< "\033[0m\n" << endl;
+	cout << "\033[1;" << COR_AMARELA << "m" << msg << " (s ou n)." << "\033[0m"
+			<< endl;
 	string resposta;
 	cin >> resposta;
 	if (resposta == "s") {
@@ -35,18 +35,18 @@ bool TerminalColorido::mensagemDeConfirmacao(string msg) {
 }
 
 void TerminalColorido::mensagemDeAlerta(string msg) {
-	cout << "\033[1;" << COR_AMARELA << "m" << msg << "\033[0m\n" << endl;
+	cout << "\033[1;" << COR_AMARELA << "m" << msg << "\033[0m" << endl;
 }
 
 void TerminalColorido::mensagemDeErro(string msg) {
-	cout << "\033[1;" << COR_VERMELHA << "m" << msg << "\033[0m\n" << endl;
+	cout << "\033[1;" << COR_VERMELHA << "m" << msg << "\033[0m" << endl;
 }
 
 void TerminalColorido::mensagemDeSucesso(string msg) {
-	cout << "\033[1;" << COR_VERDE << "m" << msg << "\033[0m\n" << endl;
+	cout << "\033[1;" << COR_VERDE << "m" << msg << "\033[0m" << endl;
 }
 
 void TerminalColorido::limpar() {
-
+	system("clear");
 }
 
