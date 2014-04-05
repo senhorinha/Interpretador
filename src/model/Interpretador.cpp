@@ -63,7 +63,7 @@ bool executarHelp(vector<string> partesDoComando) {
 		string comoUtilizar;
 		string parametros;
 		string exemploDeUso;
-		if (a->verificarComando(comando)) {
+		if (a->validarComando(comando)) {
 			if (comando == "reset") {
 				descricao = "re-apresenta mensagem de boas vindas";
 				comoUtilizar = "reset";
@@ -160,7 +160,7 @@ int main() {
 		std::cin.getline(aux, 256);
 		string comando = aux;
 		vector<string> partesDoComando = a->separarParametros(comando);
-		if (a->verificarComando(partesDoComando[0])) {
+		if (a->validarComando(partesDoComando[0])) {
 			executar(partesDoComando);
 		} else {
 			t->mensagemDeErro(
