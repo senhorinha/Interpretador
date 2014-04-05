@@ -44,12 +44,14 @@ void imprimirMensagemDeBoasVindas() {
 	t->mensagemDeSucesso(
 			"                          |_|                                       	");
 	cout << endl;
+	t->mensagemDeAlerta("Código em: https://github.com/thisenrose/Interpretador");
 	imprimirComandosDisponiveis();
 	cout << "Sintaxe: <help> ou <help> + <comando> ou <comando> + <parametros>"
 			<< endl;
 	cout << endl;
 }
 
+// Imprime as mensagens de ajuda para cada comando
 bool executarHelp(vector<string> partesDoComando) {
 	int numeroDeParametros = partesDoComando.size() - 1;
 	if (numeroDeParametros == 0) {
@@ -106,6 +108,7 @@ bool executarHelp(vector<string> partesDoComando) {
 	}
 }
 
+// Verifica qual comando foi digitado e inicia operação
 bool executar(vector<string> partesDoComando) {
 	int numeroDeParametros = partesDoComando.size() - 1;
 	bool ocorreuErro = false;
