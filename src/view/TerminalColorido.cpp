@@ -1,9 +1,4 @@
-#include "TerminalColorido.h".
-
-#include <iostream>
-#include <unistd.h>
-#include <cstdlib>
-#include <sys/utsname.h>
+#include "TerminalColorido.h"
 
 TerminalColorido::TerminalColorido() {
 	string identificador;
