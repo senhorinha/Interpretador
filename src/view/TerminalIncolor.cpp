@@ -5,15 +5,21 @@ TerminalIncolor::TerminalIncolor() {
 	struct utsname u_name;
 	uname(&u_name);
 	// Concatena login
-	inicioDaMensagem += getlogin();
+	loginComNomeDaMaquina += getlogin();
 	// Concatena @
-	inicioDaMensagem += "@";
+	loginComNomeDaMaquina += "@";
 	// Concatena nome da máquina
-	inicioDaMensagem += u_name.nodename;
+	loginComNomeDaMaquina += u_name.nodename;
 }
 
 void TerminalIncolor::parteInicialDoTerminal() {
-	cout << inicioDaMensagem << " $";
+	long size;
+	char *buf;
+	char *local;
+
+	local = getcwd(buf, (size_t) size);
+	cout << loginComNomeDaMaquina << " ";
+	cout << local << " $ ";
 }
 
 // TODO: Tratar erros de digitação

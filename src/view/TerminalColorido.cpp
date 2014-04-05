@@ -5,16 +5,23 @@ TerminalColorido::TerminalColorido() {
 	struct utsname u_name;
 	uname(&u_name);
 	// Concatena login
-	inicioDaMensagem += getlogin();
+	loginComNomeDaMaquina += getlogin();
 	// Concatena @
-	inicioDaMensagem += "@";
+	loginComNomeDaMaquina += "@";
 	// Concatena nome da máquina
-	inicioDaMensagem += u_name.nodename;
+	loginComNomeDaMaquina += u_name.nodename;
 }
 
 void TerminalColorido::parteInicialDoTerminal() {
-	cout << "\033[1;" << COR_AZUL << "m" << inicioDaMensagem << " $ "
+	long size;
+	char *buf;
+	char *local;
+
+	local = getcwd(buf, (size_t) size);
+
+	cout << "\033[1;" << COR_AZUL << "m" << loginComNomeDaMaquina << " "
 			<< "\033[0m";
+	cout << "\033[1;" << COR_VERDE << "m" << local << " $ " << "\033[0m";
 }
 
 void TerminalColorido::mensagemNormal(string msg) {

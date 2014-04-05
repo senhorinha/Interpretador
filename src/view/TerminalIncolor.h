@@ -20,7 +20,7 @@ using namespace std;
 
 class TerminalIncolor {
 
-	string inicioDaMensagem;
+	string loginComNomeDaMaquina;
 
 public:
 	TerminalIncolor();
