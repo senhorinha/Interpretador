@@ -76,7 +76,7 @@ bool executarHelp(vector<string> partesDoComando) {
 						"obtêm informações do sistema como kernel, nome do computador, versão do s.o, hardware...";
 				comoUtilizar = "uname";
 				parametros = "nenhum";
-				exemploDeUso = "uname";
+				exemploDeUso = "uname, uname all";
 			} else if (comando == "rename") {
 				descricao =
 						"Renomeia um arquivo, movendo de diretorio se solicitado.Se o novo caminho já existir o arquivo renomeado irá substititui-lo.Quando o arquivo atual será renomeado para o mesmo nome nada é feito.";
@@ -107,45 +107,68 @@ bool executarHelp(vector<string> partesDoComando) {
 
 	}
 }
+//executa uname
+bool executarUname(vector<string> partesDoComando){
+	int z;
+  	utsname u_name;
 
+  	uname(&u_name);
+
+  	int numeroDeParametros = partesDoComando.size() - 1;
+	if (numeroDeParametros == 0) {
+		cout << "   sysname[] = " << u_name.sysname << endl;
+		return true;
+	}
+  	cout << "   sysname[] = " << u_name.sysname << endl;
+  	cout << "  nodename[] = " << u_name.nodename << endl;
+  	cout << "   release[] = " << u_name.release << endl;
+  	cout << "   version[] = " << u_name.version << endl;
+  	cout << "   machine[] = " << u_name.machine << endl;
+  	cout << "domainname[] = " << u_name.domain << endl;
+	
+	return true;
+}
 // Verifica qual comando foi digitado e inicia operação
 bool executar(vector<string> partesDoComando) {
 	int numeroDeParametros = partesDoComando.size() - 1;
+	
 	bool ocorreuErro = false;
 	string mensagem;
 
-	if (partesDoComando[0] == "help" || numeroDeParametros <= 1) {
+	if (partesDoComando[0] == "help") {
 		if (!executarHelp(partesDoComando)) {
 			ocorreuErro = true;
 			mensagem = "Erro! Comando help mal especificado";
 		}
-	} else {
-		if (partesDoComando[0] == "reset" && numeroDeParametros == 0) {
-			imprimirMensagemDeBoasVindas();
-		} else if (partesDoComando[0] == "uname") {
-
-		} else if (partesDoComando[0] == "rename") {
-			if (chamadasArquivoEDiretorio->renomearArquivo(partesDoComando[1],
-					partesDoComando[2])) {
-				mensagem = "Sucesso! Arquivo renomeado";
-			} else {
-				ocorreuErro = true;
-				mensagem = "Erro! Não foi possível realizar operação.";
-			}
-		} else if (partesDoComando[0] == "access") {
-			if (chamadasArquivoEDiretorio->verificarPermissoes(
-					partesDoComando[1], partesDoComando[2])) {
-				mensagem = "Você tem permissão!";
-			} else {
-				ocorreuErro = true;
-				mensagem = "Você não tem permissão!";
-			}
-		} else if (partesDoComando[0] == "chmod") {
-
-		} else if (partesDoComando[0] == "execl") {
-
+	} else if (partesDoComando[0] == "reset" && numeroDeParametros == 0) {
+		imprimirMensagemDeBoasVindas();
+	} else if (partesDoComando[0] == "uname") {
+		if (!executarUname(partesDoComando)) {
+			ocorreuErro = true;
+			mensagem = "Erro! Comando uname mal especificado";
 		}
+	} else if (partesDoComando[0] == "rename") {
+		if (chamadasArquivoEDiretorio->renomearArquivo(partesDoComando[1],
+			partesDoComando[2])) {
+			mensagem = "Sucesso! Arquivo renomeado";
+		} else {
+			ocorreuErro = true;
+			mensagem = "Erro! Não foi possível realizar operação.";
+		}
+	} else if (partesDoComando[0] == "access") {
+		if (chamadasArquivoEDiretorio->verificarPermissoes(
+			partesDoComando[1], partesDoComando[2])) {
+			mensagem = "Você tem permissão!";
+		} else {
+			ocorreuErro = true;
+			mensagem = "Você não tem permissão!";
+		}
+	} else if (partesDoComando[0] == "chmod") {
+
+	} else if (partesDoComando[0] == "execl") {
+
 	}
+	
 	if (ocorreuErro) {
 		t->mensagemDeErro(mensagem);
 	} else {
