@@ -4,6 +4,10 @@
 *.o
 *.obj
 
+# Eclipse c++
+.cproject
+.project
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
