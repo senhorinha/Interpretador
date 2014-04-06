@@ -44,7 +44,8 @@ void imprimirMensagemDeBoasVindas() {
 	t->mensagemDeSucesso(
 			"                          |_|                                       	");
 	cout << endl;
-	t->mensagemDeAlerta("Código em: https://github.com/thisenrose/Interpretador");
+	t->mensagemDeAlerta(
+			"Código em: https://github.com/thisenrose/Interpretador");
 	imprimirComandosDisponiveis();
 	cout << "Sintaxe: <help> ou <help> + <comando> ou <comando> + <parametros>"
 			<< endl;
@@ -67,13 +68,13 @@ bool executarHelp(vector<string> partesDoComando) {
 		string exemploDeUso;
 		if (a->validarComando(comando)) {
 			if (comando == "reset") {
-				descricao = "re-apresenta mensagem de boas vindas";
+				descricao = "Re-apresenta mensagem de boas vindas";
 				comoUtilizar = "reset";
 				parametros = "nenhum";
 				exemploDeUso = "reset";
 			} else if (comando == "uname") {
 				descricao =
-						"obtêm informações do sistema como kernel, nome do computador, versão do s.o, hardware...";
+						"Obtêm informações do sistema como kernel, nome do computador, versão do s.o, hardware...";
 				comoUtilizar = "uname";
 				parametros = "nenhum";
 				exemploDeUso = "uname";
@@ -81,7 +82,7 @@ bool executarHelp(vector<string> partesDoComando) {
 				descricao =
 						"Renomeia um arquivo, movendo de diretorio se solicitado.Se o novo caminho já existir o arquivo renomeado irá substititui-lo.Quando o arquivo atual será renomeado para o mesmo nome nada é feito.";
 				comoUtilizar = "rename p1 p2";
-				parametros = "p1 -> nome_antigo | p2 -> nome_novo";
+				parametros = "\np1 -> nome_antigo\np2 -> nome_novo";
 				exemploDeUso =
 						"rename /home/fulano/documentos/nomeAntigo.txt /home/fulano/documentos/nomeNovo.txt";
 			} else if (comando == "access") {
@@ -89,9 +90,16 @@ bool executarHelp(vector<string> partesDoComando) {
 						"Verifica as permissões (leitura, escrita, execução) que um usuário possui para um determinado arquivo";
 				comoUtilizar = "access p1";
 				parametros =
-						"p1 -> r,w,x em que r(leitura) w(escrita) x(executar)";
+						"\np1 -> r,w,x em que r(leitura) w(escrita) x(executar)";
 				exemploDeUso = "access rw /home/fulano/documentos/arquivo.txt";
 			} else if (comando == "chmod") {
+				descricao =
+						"Altera as permissões (leitura, escrita, execução) de um alvo (owner, group ou general) para um determinado arquivo ";
+				comoUtilizar = "chmod p1 p2 p3";
+				parametros =
+						"\np1 -> (owner,group,general)\np2 -> r,w,x em que r(leitura) w(escrita) x(executar)\np3 -> caminho do arquivo";
+				exemploDeUso =
+						"chmod owner rwx /home/fulano/documentos/arquivo.txt";
 			} else if (comando == "execl") {
 
 			}
@@ -135,12 +143,19 @@ bool executar(vector<string> partesDoComando) {
 		} else if (partesDoComando[0] == "access") {
 			if (chamadasArquivoEDiretorio->verificarPermissoes(
 					partesDoComando[1], partesDoComando[2])) {
-				mensagem = "Você tem permissão!";
+				mensagem = "Sucesso! Você tem permissão!";
 			} else {
 				ocorreuErro = true;
-				mensagem = "Você não tem permissão!";
+				mensagem = "Erro! Você não tem permissão!";
 			}
 		} else if (partesDoComando[0] == "chmod") {
+			if (chamadasArquivoEDiretorio->alterarPermissoes(partesDoComando[1],
+					partesDoComando[2], partesDoComando[3])) {
+				mensagem = "Sucesso! Permissão alterada";
+			} else {
+				ocorreuErro = true;
+				mensagem = "Erro! Não foi possivel alterar permissão.";
+			}
 
 		} else if (partesDoComando[0] == "execl") {
 
