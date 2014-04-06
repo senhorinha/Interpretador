@@ -15,7 +15,7 @@ using namespace std;
 class Analisador {
 
 private:
-	vector<string> comandosDisponiveis = { "help", "uname", "rename", "access",
+	vector<string> comandosDisponiveis = { "help", "reset", "uname", "rename", "access",
 			"chmod", "execl" };
 public:
 	Analisador();
