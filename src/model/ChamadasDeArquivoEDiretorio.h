@@ -21,7 +21,7 @@ class ChamadasDeArquivoEDiretorio {
 public:
 	ChamadasDeArquivoEDiretorio();
 	bool verificarPermissoes(string permissoes, string caminho);
-	bool alterarPermissoes(string caminho, mode_t mode);
+	bool alterarPermissoes(string alvo, string permissoes, string caminho);
 	bool renomearArquivo(string caminhoAntigo, string caminhoNovo);
 };
 

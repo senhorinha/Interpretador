@@ -9,13 +9,13 @@ bool ChamadasDeArquivoEDiretorio::verificarPermissoes(string permissoes,
 	int resultado;
 	int mode;
 	if (permissoes.size() <= 3) {
-		if (permissoes.find("r")) {
+		if (permissoes.find("r") != string::npos) {
 			mode += R_OK;
 		}
-		if (permissoes.find("w")) {
+		if (permissoes.find("w") != string::npos) {
 			mode += W_OK;
 		}
-		if (permissoes.find("x")) {
+		if (permissoes.find("x") != string::npos) {
 			mode += X_OK;
 		}
 	}
@@ -28,8 +28,41 @@ bool ChamadasDeArquivoEDiretorio::verificarPermissoes(string permissoes,
 	}
 }
 
-bool ChamadasDeArquivoEDiretorio::alterarPermissoes(string caminho,
-		mode_t mode) {
+// Alvo = owner, group ou general.
+bool ChamadasDeArquivoEDiretorio::alterarPermissoes(string alvo,
+		string permissoes, string caminho) {
+	mode_t mode = 0;
+	if (alvo == "owner") {
+		if (permissoes.find("r") != string::npos) {
+			mode = mode | S_IRUSR;
+		}
+		if (permissoes.find("w") != string::npos) {
+			mode = mode | S_IWUSR;
+		}
+		if (permissoes.find("x") != string::npos) {
+			mode = mode | S_IXUSR;
+		}
+	} else if (alvo == "group") {
+		if (permissoes.find("r") != string::npos) {
+			mode = mode | S_IRGRP;
+		}
+		if (permissoes.find("w") != string::npos) {
+			mode = mode | S_IWGRP;
+		}
+		if (permissoes.find("x") != string::npos) {
+			mode = mode | S_IXGRP;
+		}
+	} else if (alvo == "general") {
+		if (permissoes.find("r") != string::npos) {
+			mode = mode | S_IROTH;
+		}
+		if (permissoes.find("w") != string::npos) {
+			mode = mode | S_IWOTH;
+		}
+		if (permissoes.find("x") != string::npos) {
+			mode = mode | S_IXOTH;
+		}
+	}
 	struct stat buffer;
 	char* path = strdup(caminho.c_str());
 	chmod(path, mode);
