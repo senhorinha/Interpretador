@@ -2,6 +2,7 @@
 #include "../view/TerminalColorido.cpp"
 #include "Analisador.cpp"
 #include "ChamadasDeArquivoEDiretorio.cpp"
+#include "ChamadasDeInformacao.cpp"
 #include <iostream>
 #include <stdexcept>
 #include <unistd.h>
@@ -12,6 +13,7 @@ Terminal *t = new TerminalColorido();
 Analisador *a = new Analisador();
 ChamadasDeArquivoEDiretorio *chamadasArquivoEDiretorio =
 		new ChamadasDeArquivoEDiretorio();
+ChamadasDeInformacao *chamadasDeInformacao = new ChamadasDeInformacao();
 
 void imprimirComandosDisponiveis() {
 	vector<string> comandosDisponiveis = { "help", "uname", "rename", "access",
@@ -77,8 +79,8 @@ bool executarHelp(vector<string> partesDoComando) {
 				descricao =
 						"Obtêm informações do sistema como kernel, nome do computador, versão do s.o, hardware...";
 				comoUtilizar = "uname";
-				parametros = "nenhum";
-				exemploDeUso = "uname";
+				parametros = "system, all";
+				exemploDeUso = "uname system, uname all";
 			} else if (comando == "rename") {
 				descricao =
 						"Renomeia um arquivo, movendo de diretorio se solicitado.Se o novo caminho já existir o arquivo renomeado irá substititui-lo.Quando o arquivo atual será renomeado para o mesmo nome nada é feito.";
@@ -118,12 +120,13 @@ bool executarHelp(vector<string> partesDoComando) {
 }
 
 // Verifica qual comando foi digitado e inicia operação
-bool executar(vector<string> partesDoComando) {
+void executar(vector<string> partesDoComando) {
 	int numeroDeParametros = partesDoComando.size() - 1;
+
 	bool ocorreuErro = false;
 	string mensagem;
 
-	if (partesDoComando[0] == "help" || numeroDeParametros <= 1) {
+	if (partesDoComando[0] == "help") {
 		if (!executarHelp(partesDoComando)) {
 			ocorreuErro = true;
 			mensagem = "Erro! Comando help mal especificado";
@@ -157,18 +160,26 @@ bool executar(vector<string> partesDoComando) {
 				ocorreuErro = true;
 				mensagem = "Erro! Não foi possivel alterar permissão.";
 			}
-
+		} else if (partesDoComando[0] == "uname") {
+			if (numeroDeParametros == 0) {
+				ocorreuErro = true;
+				mensagem = "Erro! Comando uname mal especificado";
+			} else {
+				if (!chamadasDeInformacao->executarUname(partesDoComando[1])) {
+					ocorreuErro = true;
+					mensagem = "Erro! Comando uname mal especificado";
+				}
+			}
 		} else if (partesDoComando[0] == "execl") {
 
 		}
-	}
-	if (ocorreuErro) {
-		t->mensagemDeErro(mensagem);
-	} else {
-		t->mensagemDeSucesso(mensagem);
-	}
-	return false;
 
+		if (ocorreuErro) {
+			t->mensagemDeErro(mensagem);
+		} else {
+			t->mensagemDeSucesso(mensagem);
+		}
+	}
 }
 
 int main() {
@@ -185,6 +196,5 @@ int main() {
 			t->mensagemDeErro(
 					"Erro! Comando não reconhecido. Digite help para ajuda");
 		}
-
 	}
 }
