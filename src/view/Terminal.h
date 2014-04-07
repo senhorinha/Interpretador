@@ -1,9 +1,3 @@
-/*
- * Terminal.h
- *
- *  Created on: 06/04/2014
- *      Author: thiago
- */
 
 #ifndef TERMINAL_H_
 #define TERMINAL_H_

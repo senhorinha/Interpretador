@@ -10,7 +10,7 @@
 #include "Analisador.cpp"
 #include "ChamadasDeArquivoEDiretorio.cpp"
 #include "ChamadasDeInformacao.cpp"
-
+#include "ChamadasDeExecucao.cpp"
 using namespace std;
 
 Terminal *t;
@@ -18,6 +18,7 @@ Analisador *a = new Analisador();
 ChamadasDeArquivoEDiretorio *chamadasArquivoEDiretorio =
 		new ChamadasDeArquivoEDiretorio();
 ChamadasDeInformacao *chamadasDeInformacao = new ChamadasDeInformacao();
+ChamadasDeExecucao *chamadasDeExecucao = new ChamadasDeExecucao();
 
 void imprimirComandosDisponiveis() {
 	vector<string> comandosDisponiveis = a->getComandosDisponiveis();
@@ -107,7 +108,13 @@ bool executarHelp(vector<string> partesDoComando) {
 				exemploDeUso =
 						"chmod owner rwx /home/fulano/documentos/arquivo.txt";
 			} else if (comando == "execl") {
-
+				descricao =
+						"Exeuta um determinado arquivo********* ";
+				comoUtilizar = "execl p1 p2 p3";
+				parametros =
+						"\np1 -> diretorio\np2 -> arquivo**\np3 -> parametros";
+				exemploDeUso =
+						"execl /bin/ls ls -l";
 			}
 			cout << "MANUAL: " << endl;
 			cout << comando << ": " << descricao << endl;
@@ -178,7 +185,11 @@ void executar(vector<string> partesDoComando) {
 				}
 			}
 		} else if (partesDoComando[0] == "execl") {
-
+			if (!chamadasDeExecucao->executarExecl(partesDoComando[1])) {
+					ocorreuErro = true;
+					mensagem = "Erro! Comando uname mal especificado";
+				}
+				cout << "here too" << endl;
 		}
 
 	}
