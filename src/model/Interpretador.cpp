@@ -78,8 +78,8 @@ bool executarHelp(vector<string> partesDoComando) {
 				descricao =
 						"obtêm informações do sistema como kernel, nome do computador, versão do s.o, hardware...";
 				comoUtilizar = "uname";
-				parametros = "nenhum";
-				exemploDeUso = "uname, uname all";
+				parametros = "system, all";
+				exemploDeUso = "uname system, uname all";
 			} else if (comando == "rename") {
 				descricao =
 						"Renomeia um arquivo, movendo de diretorio se solicitado.Se o novo caminho já existir o arquivo renomeado irá substititui-lo.Quando o arquivo atual será renomeado para o mesmo nome nada é feito.";
@@ -126,9 +126,14 @@ bool executar(vector<string> partesDoComando) {
 	} else if (partesDoComando[0] == "reset" && numeroDeParametros == 0) {
 		imprimirMensagemDeBoasVindas();
 	} else if (partesDoComando[0] == "uname") {
-		if (!chamadasDeInformacao->executarUname(partesDoComando)) {
+		if (numeroDeParametros == 0) {
 			ocorreuErro = true;
 			mensagem = "Erro! Comando uname mal especificado";
+		} else {
+			if(!chamadasDeInformacao->executarUname(partesDoComando[1])){
+			ocorreuErro = true;
+			mensagem = "Erro! Comando uname mal especificado";
+			} 
 		}
 	} else if (partesDoComando[0] == "rename") {
 		if (chamadasArquivoEDiretorio->renomearArquivo(partesDoComando[1],

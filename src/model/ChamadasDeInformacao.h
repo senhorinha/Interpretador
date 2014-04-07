@@ -12,7 +12,7 @@ class ChamadasDeInformacao {
 
 public:
 	ChamadasDeInformacao();
-	bool executarUname(vector<string> partesDoComando);
+	bool executarUname(string parametro);
 };
 
 
