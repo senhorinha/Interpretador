@@ -1,6 +1,7 @@
 #include "../view/TerminalColorido.cpp"
 #include "Analisador.cpp"
 #include "ChamadasDeArquivoEDiretorio.cpp"
+#include "ChamadasDeInformacao.cpp"
 #include <iostream>
 #include <stdexcept>
 #include <unistd.h>
@@ -11,6 +12,8 @@ TerminalColorido *t = new TerminalColorido();
 Analisador *a = new Analisador();
 ChamadasDeArquivoEDiretorio *chamadasArquivoEDiretorio =
 		new ChamadasDeArquivoEDiretorio();
+ChamadasDeInformacao *chamadasDeInformacao = 
+		new ChamadasDeInformacao();
 
 void imprimirComandosDisponiveis() {
 	vector<string> comandosDisponiveis = { "help", "uname", "rename", "access",
@@ -107,27 +110,7 @@ bool executarHelp(vector<string> partesDoComando) {
 
 	}
 }
-//executa uname
-bool executarUname(vector<string> partesDoComando){
-	int z;
-  	utsname u_name;
 
-  	uname(&u_name);
-
-  	int numeroDeParametros = partesDoComando.size() - 1;
-	if (numeroDeParametros == 0) {
-		cout << "   sysname[] = " << u_name.sysname << endl;
-		return true;
-	}
-  	cout << "   sysname[] = " << u_name.sysname << endl;
-  	cout << "  nodename[] = " << u_name.nodename << endl;
-  	cout << "   release[] = " << u_name.release << endl;
-  	cout << "   version[] = " << u_name.version << endl;
-  	cout << "   machine[] = " << u_name.machine << endl;
-  	cout << "domainname[] = " << u_name.domain << endl;
-	
-	return true;
-}
 // Verifica qual comando foi digitado e inicia operação
 bool executar(vector<string> partesDoComando) {
 	int numeroDeParametros = partesDoComando.size() - 1;
@@ -143,7 +126,7 @@ bool executar(vector<string> partesDoComando) {
 	} else if (partesDoComando[0] == "reset" && numeroDeParametros == 0) {
 		imprimirMensagemDeBoasVindas();
 	} else if (partesDoComando[0] == "uname") {
-		if (!executarUname(partesDoComando)) {
+		if (!chamadasDeInformacao->executarUname(partesDoComando)) {
 			ocorreuErro = true;
 			mensagem = "Erro! Comando uname mal especificado";
 		}
