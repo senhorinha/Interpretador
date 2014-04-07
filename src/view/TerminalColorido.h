@@ -1,10 +1,3 @@
-/*
- * TerminalColorido.h
- *
- *  Created on: 05/04/2014
- *      Author: thiago
- */
-
 #ifndef TERMINALCOLORIDO_H_
 #define TERMINALCOLORIDO_H_
 
@@ -26,7 +19,8 @@ public:
 	const string COR_VERDE = "32";
 	const string COR_AMARELA = "33";
 	const string COR_AZUL = "34";
-
+	
+	TerminalColorido();
 	virtual void parteInicialDoTerminal();
 	virtual void mensagemNormal(string msg);
 	virtual void mensagemDeAlerta(string msg);
@@ -34,7 +28,7 @@ public:
 	virtual void mensagemDeSucesso(string msg);
 	virtual void mensagemDeErro(string msg);
 	virtual void limpar();
-	TerminalColorido();
+	
 };
 
 

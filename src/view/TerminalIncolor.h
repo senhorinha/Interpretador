@@ -1,19 +1,11 @@
-/*
- * TerminalIncolor.h
- *
- *  Created on: 05/04/2014
- *      Author: thiago
- */
-
 #ifndef TERMINALINCOLOR_H_
 #define TERMINALINCOLOR_H_
 
 #include "Terminal.h"
 
 #include <iostream>
-#include <iostream>
-#include <cstdlib>
 #include <unistd.h>
+#include <cstdlib>
 #include <sys/utsname.h>
 
 using namespace std;

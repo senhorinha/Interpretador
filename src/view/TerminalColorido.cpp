@@ -18,14 +18,15 @@ void TerminalColorido::parteInicialDoTerminal() {
 	char *local;
 
 	local = getcwd(buf, (size_t) size);
+	string l = local;
 
 	cout << "\033[1;" << COR_AZUL << "m" << loginComNomeDaMaquina << " "
 			<< "\033[0m";
-	cout << "\033[1;" << COR_VERDE << "m" << local << " $ " << "\033[0m";
+	cout << "\033[1;" << COR_VERDE << "m" << l << " $ " << "\033[0m";
 }
 
 void TerminalColorido::mensagemNormal(string msg) {
-
+	cout << msg << endl;
 }
 
 // TODO: Tratar erros de digitação

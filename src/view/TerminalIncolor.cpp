@@ -18,8 +18,13 @@ void TerminalIncolor::parteInicialDoTerminal() {
 	char *local;
 
 	local = getcwd(buf, (size_t) size);
+	string l = local;
 	cout << loginComNomeDaMaquina << " ";
-	cout << local << " $ ";
+	cout << l << " $ ";
+}
+
+void TerminalIncolor::mensagemNormal(string msg) {
+	cout << msg << endl;
 }
 
 // TODO: Tratar erros de digitação
