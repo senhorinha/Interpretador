@@ -19,7 +19,7 @@ vector<string> Analisador::separarParametros(string comando) {
 }
 
 bool Analisador::validarComando(string comandoSemParametro) {
-	for (auto & c : getComandosDisponiveis()) {
+	for (string & c : getComandosDisponiveis()) {
 		if (c == comandoSemParametro) {
 			return true;
 		}
