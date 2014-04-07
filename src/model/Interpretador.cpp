@@ -1,23 +1,26 @@
+#include <iostream>
+#include <stdexcept>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "../view/Terminal.h"
+#include "../view/TerminalIncolor.cpp"
 #include "../view/TerminalColorido.cpp"
 #include "Analisador.cpp"
 #include "ChamadasDeArquivoEDiretorio.cpp"
 #include "ChamadasDeInformacao.cpp"
-#include <iostream>
-#include <stdexcept>
-#include <unistd.h>
 
 using namespace std;
 
-Terminal *t = new TerminalColorido();
+Terminal *t;
 Analisador *a = new Analisador();
 ChamadasDeArquivoEDiretorio *chamadasArquivoEDiretorio =
 		new ChamadasDeArquivoEDiretorio();
 ChamadasDeInformacao *chamadasDeInformacao = new ChamadasDeInformacao();
 
 void imprimirComandosDisponiveis() {
-	vector<string> comandosDisponiveis = { "help", "uname", "rename", "access",
-			"chmod", "execl" };
+	vector<string> comandosDisponiveis = a->getComandosDisponiveis();
 	cout << "Comandos disponíveis: [";
 	for (int i = 0; i < comandosDisponiveis.size(); i++) {
 		auto& c = comandosDisponiveis[i];
@@ -61,7 +64,7 @@ bool executarHelp(vector<string> partesDoComando) {
 	if (numeroDeParametros == 0) {
 		imprimirComandosDisponiveis();
 		cout
-				<< "Sintaxe: <help> ou <help> + <comando> ou <comando> + <parametros>";
+				<< "Sintaxe: <help> ou <help> + <comando> ou <comando> + <parametros>" << endl;
 		return true;
 	} else {
 		string comando = partesDoComando[1];
@@ -112,10 +115,8 @@ bool executarHelp(vector<string> partesDoComando) {
 			cout << "Parâmetros: " << parametros << endl;
 			cout << "Exemplo de uso: " << exemploDeUso << endl;
 			return true;
-		} else {
-			return false;
 		}
-
+		return false;
 	}
 }
 
@@ -135,6 +136,12 @@ void executar(vector<string> partesDoComando) {
 		if (partesDoComando[0] == "reset" && numeroDeParametros == 0) {
 			imprimirMensagemDeBoasVindas();
 		} else if (partesDoComando[0] == "uname") {
+			if(numeroDeParametros == 1) {
+				chamadasDeInformacao->executarUname(partesDoComando[1]);
+			} else {
+				ocorreuErro = true;
+				mensagem = "Erro! Parâmetros necessários: system ou all";
+			}
 
 		} else if (partesDoComando[0] == "rename") {
 			if (chamadasArquivoEDiretorio->renomearArquivo(partesDoComando[1],
@@ -174,15 +181,26 @@ void executar(vector<string> partesDoComando) {
 
 		}
 
+	}
+
 		if (ocorreuErro) {
 			t->mensagemDeErro(mensagem);
 		} else {
 			t->mensagemDeSucesso(mensagem);
 		}
+}
+
+// Verifica se execução em terminal de sistema
+void prepararTerminal(){
+	if(isatty(fileno(stdout)) == 1) {
+		t = new TerminalColorido();
+	} else {
+		t =  new TerminalIncolor();
 	}
 }
 
 int main() {
+	prepararTerminal();
 	imprimirMensagemDeBoasVindas();
 	while (true) {
 		char aux[256];
