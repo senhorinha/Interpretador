@@ -1,3 +1,4 @@
+#include "../view/Terminal.h"
 #include "../view/TerminalColorido.cpp"
 #include "Analisador.cpp"
 #include "ChamadasDeArquivoEDiretorio.cpp"
@@ -7,7 +8,7 @@
 
 using namespace std;
 
-TerminalColorido *t = new TerminalColorido();
+Terminal *t = new TerminalColorido();
 Analisador *a = new Analisador();
 ChamadasDeArquivoEDiretorio *chamadasArquivoEDiretorio =
 		new ChamadasDeArquivoEDiretorio();
