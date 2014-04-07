@@ -109,7 +109,7 @@ bool executarHelp(vector<string> partesDoComando) {
 						"chmod owner rwx /home/fulano/documentos/arquivo.txt";
 			} else if (comando == "execl") {
 				descricao =
-						"Exeuta um determinado arquivo********* ";
+						"Executa um determinado arquivo********* ";
 				comoUtilizar = "execl p1 p2 p3";
 				parametros =
 						"\np1 -> diretorio\np2 -> arquivo**\np3 -> parametros";
@@ -184,12 +184,11 @@ void executar(vector<string> partesDoComando) {
 					mensagem = "Erro! Comando uname mal especificado";
 				}
 			}
-		} else if (partesDoComando[0] == "execl") {
-			if (!chamadasDeExecucao->executarExecl(partesDoComando[1])) {
+		} else if (partesDoComando[0] == "execl" && numeroDeParametros == 3) {
+			if (!chamadasDeExecucao->executarExecl(partesDoComando[1], partesDoComando[2], partesDoComando[3])) {
 					ocorreuErro = true;
-					mensagem = "Erro! Comando uname mal especificado";
+					mensagem = "Erro! Comando execl mal especificado###";
 				}
-				cout << "here too" << endl;
 		}
 
 	}
