@@ -8,15 +8,16 @@
 #ifndef TERMINALCOLORIDO_H_
 #define TERMINALCOLORIDO_H_
 
+#include "Terminal.h"
+
 #include <iostream>
 #include <unistd.h>
 #include <cstdlib>
 #include <sys/utsname.h>
-#include <iostream>
 
 using namespace std;
 
-class TerminalColorido {
+class TerminalColorido : public Terminal{
 
 	string loginComNomeDaMaquina;
 
@@ -26,13 +27,13 @@ public:
 	const string COR_AMARELA = "33";
 	const string COR_AZUL = "34";
 
-	void parteInicialDoTerminal();
-	void mensagemNormal(string msg);
-	void mensagemDeAlerta(string msg);
-	bool mensagemDeConfirmacao(string msg);
-	void mensagemDeSucesso(string msg);
-	void mensagemDeErro(string msg);
-	void limpar();
+	virtual void parteInicialDoTerminal();
+	virtual void mensagemNormal(string msg);
+	virtual void mensagemDeAlerta(string msg);
+	virtual bool mensagemDeConfirmacao(string msg);
+	virtual void mensagemDeSucesso(string msg);
+	virtual void mensagemDeErro(string msg);
+	virtual void limpar();
 	TerminalColorido();
 };
 

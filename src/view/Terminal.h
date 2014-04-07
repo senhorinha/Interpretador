@@ -1,21 +1,29 @@
+/*
+ * Terminal.h
+ *
+ *  Created on: 06/04/2014
+ *      Author: thiago
+ */
+
+#ifndef TERMINAL_H_
+#define TERMINAL_H_
+
 #include <iostream>
 
 using namespace std;
 
-// Interface básica para interação com usuário.
+
 class Terminal {
 
 public:
-	virtual ~Terminal() {
-	}
-
-	// imprime nomeDoUsuario@nomeDaMaquina (ex: fulano@timemachine)
 	virtual void parteInicialDoTerminal() = 0;
 	virtual void mensagemNormal(string msg) = 0;
+	virtual void mensagemDeAlerta(string msg) = 0;
 	virtual bool mensagemDeConfirmacao(string msg) = 0;
 	virtual void mensagemDeSucesso(string msg) = 0;
-	virtual void mensagemDeAlerta(string msg) = 0;
 	virtual void mensagemDeErro(string msg) = 0;
 	virtual void limpar() = 0;
 };
 
+
+#endif /* TERMINAL_H_ */

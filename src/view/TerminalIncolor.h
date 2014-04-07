@@ -8,9 +8,9 @@
 #ifndef TERMINALINCOLOR_H_
 #define TERMINALINCOLOR_H_
 
+#include "Terminal.h"
 
 #include <iostream>
-
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
@@ -18,19 +18,19 @@
 
 using namespace std;
 
-class TerminalIncolor {
+class TerminalIncolor : public Terminal{
 
 	string loginComNomeDaMaquina;
 
 public:
 	TerminalIncolor();
-	void parteInicialDoTerminal();
-	void mensagemNormal(string msg);
-	void mensagemDeAlerta(string msg);
-	bool mensagemDeConfirmacao(string msg);
-	void mensagemDeSucesso(string msg);
-	void mensagemDeErro(string msg);
-	void limpar();
+	virtual void parteInicialDoTerminal();
+	virtual void mensagemNormal(string msg);
+	virtual void mensagemDeAlerta(string msg);
+	virtual bool mensagemDeConfirmacao(string msg);
+	virtual void mensagemDeSucesso(string msg);
+	virtual void mensagemDeErro(string msg);
+	virtual void limpar();
 };
 
 
