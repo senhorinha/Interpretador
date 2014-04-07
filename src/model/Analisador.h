@@ -1,10 +1,3 @@
-/*
- * Analisador.h
- *
- *  Created on: 05/04/2014
- *      Author: thiago
- */
-
 #ifndef ANALISADOR_H_
 #define ANALISADOR_H_
 
