@@ -11,6 +11,13 @@
 
 * [Rafael Luiz Cancian](http://www.inf.ufsc.br/~cancian)
 
+## Como executar
+
+Após baixar o aplicativo atraveś de ```git clone https://github.com/thisenrose/Interpretador.git``` ou baixa-lo [aqui](https://github.com/thisenrose/Interpretador/archive/master.zip) é necessário entrar na pasta raiz do programa utilizando um terminal e realizar os dois passos seguintes.
+
+1. ```make```
+2. ```./interpretador```
+
 
 ## O que fazer
 
