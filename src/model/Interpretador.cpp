@@ -15,7 +15,7 @@ using namespace std;
 
 Terminal *t;
 Analisador *a = new Analisador();
-ChamadasDeArquivoEDiretorio *chamadasArquivoEDiretorio =
+ChamadasDeArquivoEDiretorio *chamadasDeArquivoEDiretorio =
 		new ChamadasDeArquivoEDiretorio();
 ChamadasDeInformacao *chamadasDeInformacao = new ChamadasDeInformacao();
 ChamadasDeExecucao *chamadasDeExecucao = new ChamadasDeExecucao();
@@ -115,6 +115,30 @@ bool executarHelp(vector<string> partesDoComando) {
 						"\np1 -> diretorio\np2 -> arquivo**\np3 -> parametros";
 				exemploDeUso =
 						"execl /bin/ls ls -l";
+			} else if(comando == "cd") {
+								descricao =
+						"Muda de diretorio";
+				comoUtilizar = "cd p1";
+				parametros =
+						"\np1 -> caminho";
+				exemploDeUso =
+						"cd /home/fulano/";
+			} else if(comando == "mkdir") {
+								descricao =
+						"Cria um diretorio";
+				comoUtilizar = "mkdir p1";
+				parametros =
+						"\np1 -> caminho";
+				exemploDeUso =
+						"mkdir /home/fulano/novaPasta";
+			} else if(comando == "rmdir") {
+								descricao =
+						"Remove um diretorio";
+				comoUtilizar = "rmdir p1";
+				parametros =
+						"\np1 -> caminho";
+				exemploDeUso =
+						"rmdir /home/fulano/novaPasta";
 			}
 			cout << "MANUAL: " << endl;
 			cout << comando << ": " << descricao << endl;
@@ -151,7 +175,7 @@ void executar(vector<string> partesDoComando) {
 			}
 
 		} else if (partesDoComando[0] == "rename") {
-			if (chamadasArquivoEDiretorio->renomearArquivo(partesDoComando[1],
+			if (chamadasDeArquivoEDiretorio->renomearArquivo(partesDoComando[1],
 					partesDoComando[2])) {
 				mensagem = "Sucesso! Arquivo renomeado";
 			} else {
@@ -159,7 +183,7 @@ void executar(vector<string> partesDoComando) {
 				mensagem = "Erro! Não foi possível realizar operação.";
 			}
 		} else if (partesDoComando[0] == "access") {
-			if (chamadasArquivoEDiretorio->verificarPermissoes(
+			if (chamadasDeArquivoEDiretorio->verificarPermissoes(
 					partesDoComando[1], partesDoComando[2])) {
 				mensagem = "Sucesso! Você tem permissão!";
 			} else {
@@ -167,7 +191,7 @@ void executar(vector<string> partesDoComando) {
 				mensagem = "Erro! Você não tem permissão!";
 			}
 		} else if (partesDoComando[0] == "chmod") {
-			if (chamadasArquivoEDiretorio->alterarPermissoes(partesDoComando[1],
+			if (chamadasDeArquivoEDiretorio->alterarPermissoes(partesDoComando[1],
 					partesDoComando[2], partesDoComando[3])) {
 				mensagem = "Sucesso! Permissão alterada";
 			} else {
@@ -184,20 +208,53 @@ void executar(vector<string> partesDoComando) {
 					mensagem = "Erro! Comando uname mal especificado";
 				}
 			}
-		} else if (partesDoComando[0] == "execl" && numeroDeParametros == 3) {
-			if (!chamadasDeExecucao->executarExecl(partesDoComando[1], partesDoComando[2], partesDoComando[3])) {
-					ocorreuErro = true;
-					mensagem = "Erro! Comando execl mal especificado###";
+		} else if (partesDoComando[0] == "execl") {
+			if (numeroDeParametros != 3 || !chamadasDeExecucao->executarExecl(partesDoComando[1], partesDoComando[2], partesDoComando[3])) {
+				ocorreuErro = true;
+				mensagem = "Erro! Comando execl mal especificado. Digite help execl";
+			}
+		} else if(partesDoComando[0] == "cd") {
+			string aux;
+			if(numeroDeParametros == 1) {
+				aux = partesDoComando[1]; 
+			} else {
+				aux = "/";
+			}
+			if(!chamadasDeArquivoEDiretorio->trocarDeDiretorio(aux)) {
+				ocorreuErro = true;
+				mensagem = "Erro! Comando cd mal especificado. Digite help cd";
+			} 
+		} else if(partesDoComando[0] == "mkdir") {
+			if(numeroDeParametros != 1 || !chamadasDeArquivoEDiretorio->criarDiretorio(partesDoComando[1])) {
+				ocorreuErro = true;
+				mensagem = "Erro. Comando mkdir mal especificado. Digite help mkdir";
+			} else {
+				mensagem = "Sucesso! Diretório criado!";
+			}
+		} else if(partesDoComando[0] == "rmdir") {
+			if(numeroDeParametros != 1) {
+				ocorreuErro == true;
+				mensagem = "Erro. Comando mkdir mal especificado. Digite help rmdir";
+			} else {
+				if(t->mensagemDeConfirmacao("Você realemente deseja excluir o diretório ?")) {
+					if(chamadasDeArquivoEDiretorio->removerDiretorio(partesDoComando[1])) {
+						mensagem = "Sucesso! Diretório removido";
+					} else {
+					ocorreuErro == true;
+					mensagem = "Erro. Comando mkdir mal especificado. Digite help rmdir";
+					}
+				} else {
+					return;
 				}
+			}
 		}
-
 	}
 
-		if (ocorreuErro) {
-			t->mensagemDeErro(mensagem);
-		} else {
-			t->mensagemDeSucesso(mensagem);
-		}
+	if (ocorreuErro) {
+		t->mensagemDeErro(mensagem);
+	} else {
+		t->mensagemDeSucesso(mensagem);
+	}
 }
 
 // Verifica se execução em terminal de sistema
@@ -226,3 +283,4 @@ int main() {
 		}
 	}
 }
+
