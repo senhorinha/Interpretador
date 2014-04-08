@@ -233,3 +233,72 @@ Utiliza o comando shell ls passando o paramêtro -la (lista no formato [l]ongo e
 ``` cpp
 execl ("/bin/ls", "ls", "-la", (char *)0);
 ```
+
+## Chdir
+Muda para o diretório especificado.
+
+### Sintaxe
+
+``` cpp
+#include <unistd.h>
+int chdir(const char *path);
+```
+
+### Como usar
+
+#### Exemplo
+
+Vai para diretorio /home/fulano/documentos/
+
+``` cpp
+chdir("/home/fulano/documentos/");
+```
+
+## Mkdir
+
+Cria um novo diretório.
+
+Para mais detalhes:
+
+* [Ubuntu Manual Pages: Mkdir](http://manpages.ubuntu.com/manpages/raring/man2/mkdir.2.html)
+
+### Sintaxe
+
+``` cpp
+#include <sys/stat.h>
+int mkdir(const char *path, mode_t mode);
+```
+
+### Como usar
+
+#### Exemplo
+
+Cria um novo diretório /home/fulano/documentos/  com permissão de leitura, escrita e busca para o proprietário e grupo e apenas leitura e busca para os outros.
+
+``` cpp
+chdir("/home/fulano/novaPasta/" , S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+```
+## Rmdir
+
+Utilizado para remover diretório.
+
+Para mais detalhes:
+
+* [Unix Help: Rmdir](http://unixhelp.ed.ac.uk/CGI/man-cgi?rmdir+2)
+
+### Sintaxe
+
+``` cpp
+#include <unistd.h>
+int rmdir(const char *pathname);
+```
+
+### Como usar
+
+#### Exemplo
+
+Remove o diretório /home/fulano/documentos
+
+``` cpp
+rmdir("/home/fulano/documentos");
+```
