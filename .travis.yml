@@ -1,0 +1,13 @@
+language: cpp
+compiler:
+  - g++
+script: make
+branches:
+  only:
+    - master
+notifications:
+  recipients:
+    - thiago.senhorinha@gmail.com
+  email:
+    on_success: change
+    on_failure: always
