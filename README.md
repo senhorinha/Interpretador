@@ -240,7 +240,6 @@ Utiliza o comando shell ls passando o paramêtro -la (lista no formato [l]ongo e
 ``` cpp
 execl ("/bin/ls", "ls", "-la", (char *)0);
 ```
-<<<<<<< HEAD
 
 ## Chdir
 Muda para o diretório especificado.
@@ -253,7 +252,7 @@ int chdir(const char *path);
 ```
 
 ### Como usar
-
+h
 #### Exemplo
 
 Vai para diretorio /home/fulano/documentos/
