@@ -1,10 +1,3 @@
-/*
- * ChamadasDeArquivoEDiretorio.h
- *
- *  Created on: 05/04/2014
- *      Author: thiago
- */
-
 #ifndef CHAMADASDEARQUIVOEDIRETORIO_H_
 #define CHAMADASDEARQUIVOEDIRETORIO_H_
 
