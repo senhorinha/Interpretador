@@ -32,10 +32,10 @@ bool TerminalIncolor::mensagemDeConfirmacao(string msg) {
 	cout << msg << " (s ou n)." << endl;
 	string resposta;
 	cin >> resposta;
-	if (resposta == "n") {
-		return false;
+	if (resposta == "s") {
+		return true;
 	}
-	return true;
+	return false;
 }
 
 void TerminalIncolor::mensagemDeAlerta(string msg) {

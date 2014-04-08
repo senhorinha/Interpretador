@@ -36,9 +36,9 @@ bool TerminalColorido::mensagemDeConfirmacao(string msg) {
 	string resposta;
 	cin >> resposta;
 	if (resposta == "s") {
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 }
 
 void TerminalColorido::mensagemDeAlerta(string msg) {
