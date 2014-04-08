@@ -4,6 +4,37 @@ ChamadasDeArquivoEDiretorio::ChamadasDeArquivoEDiretorio() {
 
 }
 
+bool ChamadasDeArquivoEDiretorio::criarDiretorio(string caminho) {
+	char* path = strdup(caminho.c_str());
+	// Cria diretório com permissões padrão.
+	int resultado = mkdir(path, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	if(resultado == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool ChamadasDeArquivoEDiretorio::removerDiretorio(string caminho) {
+	char* path = strdup(caminho.c_str());
+	int resultado = rmdir(path);
+	if(resultado == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool ChamadasDeArquivoEDiretorio::trocarDeDiretorio(string caminho) {
+	char* path = strdup(caminho.c_str());
+	int resultado = chdir(path);
+	if(resultado == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 bool ChamadasDeArquivoEDiretorio::verificarPermissoes(string permissoes,
 		string caminho) {
 	int resultado;

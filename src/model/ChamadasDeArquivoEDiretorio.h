@@ -20,6 +20,9 @@ class ChamadasDeArquivoEDiretorio {
 
 public:
 	ChamadasDeArquivoEDiretorio();
+	bool criarDiretorio(string caminho);
+	bool removerDiretorio(string caminho);
+	bool trocarDeDiretorio(string caminho);
 	bool verificarPermissoes(string permissoes, string caminho);
 	bool alterarPermissoes(string alvo, string permissoes, string caminho);
 	bool renomearArquivo(string caminhoAntigo, string caminhoNovo);
