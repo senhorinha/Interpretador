@@ -8,8 +8,8 @@ using namespace std;
 class Analisador {
 
 private:
-	vector<string> comandosDisponiveis = { "help", "reset", "uname", "rename", "access",
-			"chmod", "execl" };
+	vector<string> comandosDisponiveis = { "help", "cd", "reset", "uname", "rename", "access",
+			"chmod", "mkdir", "rmdir", "execl" };
 public:
 	Analisador();
 	bool validarComando(string comandoSemParametro);
